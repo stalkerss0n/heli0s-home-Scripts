@@ -30,4 +30,6 @@ Configuration for my all in one media server. Any updates and fixes are welcome.
 
 ### Webserver
 * NGINX
+  * Mirror (public)
+  * Data (private-protected)
 * Caddy (?)
