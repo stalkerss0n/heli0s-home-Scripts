@@ -1,0 +1,24 @@
+[Unit]
+Description= rclone gCache_heli0s_Albedo mount
+After=network-online.target
+PartOf=gmedia.service
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount \
+		--config=/root/.config/rclone/rclone.conf \
+		-vvv \
+		--allow-other \
+		--allow-non-empty \
+		--buffer-size 0M \
+		--dir-cache-time 72h \
+		--drive-chunk-size 32M \
+		--cache-chunk-path /data/drive/.cache/rclone/cache-backend \
+		--timeout 1h \
+		--cache-db-purge gCache_heli0s_Albedo: /data/drives/gCache_heli0s_Albedo
+
+ExecStop=/bin/fusermount -uz /data/drives/gCache_heli0s_Albedo
+Restart=on-failure
+
+[Install]
+WantedBy=gmedia.service

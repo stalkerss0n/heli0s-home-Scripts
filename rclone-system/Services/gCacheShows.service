@@ -1,0 +1,29 @@
+[Unit]
+Description= rclone gCache_heli0s_Shows mount
+After=network-online.target
+PartOf=gmedia.service
+
+[Service]
+Type=notify
+#Type=simple
+ExecStart=/usr/bin/rclone mount \
+		--config=/root/.config/rclone/rclone.conf \
+		-vvv \
+		--allow-other \
+		--allow-non-empty \
+		--dir-cache-time 72h \
+		--drive-chunk-size 32M \
+		--cache-chunk-path /data/drive/.cache/rclone/cache-backend \
+		--vfs-read-chunk-size 256M \
+		--vfs-read-chunk-size-limit off \
+		--vfs-cache-max-size 8G \
+		--cache-dir /data/drive/.cache/rclone/cache-backend \
+		--cache-db-purge gCache_heli0s_Shows: /data/drives/gCache_heli0s_Shows
+
+ExecStop=/bin/fusermount -uz /data/drives/gCache_heli0s_Shows
+Restart=on-failure
+
+[Install]
+WantedBy=gmedia.service
+#WantedBy=default.target
+
