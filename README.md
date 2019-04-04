@@ -20,9 +20,9 @@ Configuration for my all in one media server. Any updates and fixes are welcome.
   * *.andromedae.space
 * To:
   * localhost
-  * heli0s-Networking-xD3
-  * heli0s-Networking-xD4
-  * heli0s-Networking-xD6
+  * server_1
+  * server_2
+  * server_3
 
 ### Media-Server
 * Emby
